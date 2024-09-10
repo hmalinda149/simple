@@ -11,20 +11,46 @@
           <button class="btn btn-outline-success" type="submit">Search</button>
         </form>
 
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="margin-left: 500px">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="{{url('/')}}">Home</a>
-          </li>
 
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Pages
-            </a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="{{url('/add_data')}}">Insert Page</a></li>
-              <li><a class="dropdown-item" href="{{url('/view_data')}}">View Page</a></li>
-            </ul>
-          </li>
+
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="margin-left: 500px">
+
+
+          @if (Route::has('login'))
+
+                    @auth
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{{url('/home')}}">Home</a>
+                         </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Pages
+                            </a>
+                            <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{{url('/add_data')}}">Insert Page</a></li>
+                            <li><a class="dropdown-item" href="{{url('/view_data')}}">View Page</a></li>
+                            </ul>
+                        </li>
+                        <form method="POST" action="{{ route('logout') }}" x-data>
+                            @csrf
+                            <button class="btn btn-danger">Logout</button>
+                        </form>
+                    @else
+
+                      <li class="nav-item">
+                        <a class="btn btn-primary" aria-current="page" href="{{ route('login') }}">Login</a>
+                      </li>
+
+                        @if (Route::has('register'))
+                            <li class="nav-item">
+                             <a class="btn btn-success" style="margin-left:10px" aria-current="page" href="{{ route('register') }}">Register</a>
+                            </li>
+                        @endif
+                    @endauth
+
+            @endif
+
+
 
         </ul>
       </div>

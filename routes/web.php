@@ -18,9 +18,13 @@ use App\Http\Controllers\HomeController;
 //     return view('welcome');
 // });
 route::get('/',[HomeController::class,'index']);
+route::get('/home',[HomeController::class,'home']);
+
 route::get('/add_data',[HomeController::class,'add_data']);
 route::get('/view_data',[HomeController::class,'view_data']);
 route::get('/edit_data/{id}',[HomeController::class,'edit_data']);
 route::post('/upload_data',[HomeController::class,'upload_data']);
 route::post('/update_details/{id}',[HomeController::class,'update_details']);
 route::get('/delete/{id}',[HomeController::class,'delete']);
+
+
